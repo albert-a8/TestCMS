@@ -1,0 +1,25 @@
+﻿@using Kendo.Mvc.UI
+@model IEnumerable<SitefinityWebApp.Mvc.Models.DataModels.EmployeeDetail>
+
+<script type="text/x-kendo-tmpl" id="EmployeeTemplate">
+    <div class="employee">
+        <h2>#:FirstName#&nbsp;#:LastName#</h2>
+        <p><b>Employee ID:</b> #:EmployeeID#</p>
+        <p><b>Employee Type:</b> #:EmployeeTypeDisplay#</p>
+        <p><b>Job Description:</b> #:JobDescription#</p>
+        <p><b>Birthdate:</b> #:BirthdateDisplay#</p>
+        <p><b>Monthly Salary:</b> #:kendo.toString(Salary, "c")#</p>
+    </div>
+</script>
+<label for="EmployeeList">Employees</label>
+@(Html.Kendo().ListView<SitefinityWebApp.Mvc.Models.DataModels.EmployeeDetail>()
+    .Name("EmployeeList")
+    .TagName("div")
+    .BindTo(Model)
+    .ClientTemplateId("EmployeeTemplate")
+    .DataSource(dataSource => dataSource
+        .PageSize(20)
+        .ServerOperation(false)
+     )
+    .Pageable()
+)

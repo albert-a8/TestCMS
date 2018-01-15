@@ -1,0 +1,61 @@
+@using Kendo.Mvc.UI
+@model SitefinityWebApp.Mvc.Models.EmployeeListDPModel
+
+<div id="EmployeeTypesDiv">
+    <label for="EmployeeTypes"><b>Employee Types:</b></label>
+    @(Html.Kendo().MultiSelect()
+        .Name("EmployeeTypes")
+        .Placeholder("Select employee type")
+        .DataTextField("Key")
+        .DataValueField("Value")
+        .BindTo(Model.EmployeeClassification)
+        .Events(events => events.Change("CheckSubmission"))
+        .Deferred()
+    )
+</div>
+<div id="EmployeeDeptDiv">
+    <label for="EmployeeDepartments"><b>Department:</b></label>
+    @(Html.Kendo().MultiSelect()
+        .Name("EmployeeDepartments")
+        .Placeholder("Select department name")
+        .DataTextField("Key")
+        .DataValueField("Value")
+        .BindTo(Model.DepartmentClassification)
+        .Events(events => events.Change("CheckSubmission"))
+        .Deferred()
+    )
+</div>
+<div id="EmployeeDateTimeDiv">
+    <h3><b>Birthdate Search:</b></h3>
+    <div class="dateDiv">
+        <label for="StartDate">Start Date</label>
+        @(Html.Kendo().DateTimePicker()
+        .Name("StartDate")
+        .Max(DateTime.Today)
+        .ParseFormats(new string[] { "MM/dd/yyyy" })
+        .Events(e => e.Change("startChange"))
+        .HtmlAttributes(new { style = "width:100%;" })
+        )
+    </div>
+    <div class="dateDiv">
+        <label for="EndDate">End Date</label>
+        @(Html.Kendo().DateTimePicker()
+        .Name("EndDate")
+        .Max(DateTime.Today)
+        .ParseFormats(new string[] { "MM/dd/yyyy" })
+        .Events(e => e.Change("endChange"))
+        .HtmlAttributes(new { style = "width:100%;" })
+        )
+    </div>
+</div>
+<div id="EmployeeListDiv">
+</div>
+
+<style>
+    #EmployeeTypesDiv, #EmployeeDeptDiv, #EmployeeDateTimeDiv {
+        margin-bottom: 10px; overflow: hidden;
+    }
+        #EmployeeDateTimeDiv .dateDiv {
+            float: left; width: 45%; overflow: hidden; margin-right: 10px;
+        }
+</style>

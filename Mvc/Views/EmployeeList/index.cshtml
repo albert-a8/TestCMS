@@ -1,0 +1,41 @@
+@using Kendo.Mvc.UI
+@model SitefinityWebApp.Mvc.Models.EmployeeListModel
+
+@(Html.Kendo().DropDownList()
+    .Name("EmpClassification")
+    .DataTextField("Key")
+    .DataValueField("Value")
+    .BindTo(Model.EmployeeClassification)
+    .Events(events => events.Change("FilterEmployeeType"))
+    .Deferred()
+)
+<br />
+<div id="EmpListContainer">
+@(Html.Kendo().Grid(Model.AllEmployees)
+    .Name("EmpList")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.EmployeeID).Title("Employee ID");
+        columns.Bound(p => p.FirstName).Title("First Name");
+        columns.Bound(p => p.LastName).Title("Last Name");
+        columns.Bound(p => p.JobDescription).Title("Job Description");
+        columns.Bound(p => p.BirthdateDisplay).Title("Birth Date");
+        columns.Bound(p => p.Salary).Title("Salary");
+        columns.Bound(p => p.EmployeeTypeDisplay).Title("Employee Type");
+    })
+    .HtmlAttributes(new { style = "height: 350px;" })
+    .Pageable(pageable => pageable
+       .Input(true)
+       .Numeric(false)
+     )
+    .Sortable()
+    .Scrollable(scr => scr.Height(230))
+    .Filterable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        .ServerOperation(false)
+     )
+    .Deferred()
+)
+</div>

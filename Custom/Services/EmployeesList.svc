@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="SitefinityWebApp.Custom.Services.EmployeesList" CodeBehind="EmployeesList.svc.cs" %>
