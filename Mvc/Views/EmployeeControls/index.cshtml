@@ -1,0 +1,93 @@
+@using Kendo.Mvc.UI
+@model SitefinityWebApp.Mvc.Models.EmployeeControlsModel
+
+<div id="EmployeeTypesDiv">
+    <label for="EmployeeTypes"><b>Employee Types:</b></label>
+    @(Html.Kendo().MultiSelect()
+        .Name("EmployeeTypes")
+        .Placeholder("Select employee type")
+        .DataTextField("Key")
+        .DataValueField("Value")
+        .BindTo(Model.EmployeeClassification)
+        .Events(events => events.Change("CheckSubmission"))
+        .Deferred()
+    )
+</div>
+<div id="EmployeeDateTimeDiv">
+    <h3><b>Birthdate Search:</b></h3>
+    <div class="dateDiv">
+        <label for="StartDate">Start Date</label>
+        @(Html.Kendo().DatePicker()
+        .Name("StartDate")
+        .Max(DateTime.Today)
+        .ParseFormats(new string[] { "MM/dd/yyyy" })
+        .Events(e => e.Change("startChange"))
+        .HtmlAttributes(new { style = "width:100%;" })
+        )
+    </div>
+    <div class="dateDiv">
+        <label for="EndDate">End Date</label>
+        @(Html.Kendo().DatePicker()
+        .Name("EndDate")
+        .Max(DateTime.Today)
+        .ParseFormats(new string[] { "MM/dd/yyyy" })
+        .Events(e => e.Change("endChange"))
+        .HtmlAttributes(new { style = "width:100%;" })
+        )
+    </div>
+</div>
+<script type="text/x-kendo-tmpl" id="EmployeeTemplate">
+    <div class="employeeDetails">
+        #=EmployeeImagesDisplay#
+        <h2>#:FirstName#&nbsp;#:LastName#</h2>
+        <p><b>Employee ID:</b> #:EmployeeID#</p>
+        <p><b>Employee Type:</b> #:EmployeeTypeDisplay#</p>
+        <p><b>Job Description:</b> #:JobDescription#</p>
+        <p><b>Birthdate:</b> #:BirthdateDisplay#</p>
+        <p><b>Monthly Salary:</b> #:kendo.toString(Salary, "c")#</p>
+        #=DepartmentsDisplay#
+    </div>
+</script>
+<label for="EmployeeList"><b>Employees:</b></label>
+@(Html.Kendo().ListView<SitefinityWebApp.Mvc.Models.DataModels.EmployeeDetail>()
+    .Name("EmployeeList")
+    .TagName("div")
+    .ClientTemplateId("EmployeeTemplate")
+    .Pageable()
+    .Deferred()
+)
+
+<style type="text/css">
+    #EmployeeTypesDiv, #EmployeeDateTimeDiv {
+        margin-bottom: 10px; overflow: hidden;
+    }
+    #EmployeeTypesDiv {
+        max-width: 400px;
+    }
+        #EmployeeDateTimeDiv .dateDiv {
+            float: left; width: 200px; overflow: hidden; margin-right: 10px;
+        }
+    #listView {
+        padding: 10px 5px; margin-bottom: -1px; min-height: 510px; font: inherit;
+    }
+    .employeeDetails {
+        float: left; position: relative; width: 45%; margin: 5px 5px 5px 5px; padding: 8px; overflow: hidden;
+        min-height: 200px; border: solid 1px #b5b5b5;
+    }
+        .employeeDetails .imagesList {
+            width: 100%; height: 50px; text-align: left; margin-bottom: 5px;
+        }
+            .employeeDetails .imagesList img {
+                width: 50px; height: 50px; float: left; margin-right: 10px; display: block;
+            }
+        .employeeDetails .department {
+            width: 100%; text-align: left; margin: 5px 0px 0px 0px; padding-left: 20px;
+        }
+        .employeeDetails h2 {
+            margin: 0; padding: 0; overflow: hidden; line-height: 1.1em; font-size: 20px;
+            font-weight: bold; text-transform: uppercase; color: #000;
+        }
+        .employeeDetails p {
+            margin: 0; font-size: 12px; font-weight: normal; color: #000;
+        }
+</style>

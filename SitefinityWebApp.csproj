@@ -1098,12 +1098,14 @@
       <DependentUpon>EmployeesList.svc</DependentUpon>
     </Compile>
     <Compile Include="Mvc\Base\JsonContent.cs" />
+    <Compile Include="Mvc\Controllers\EmployeeControlsController.cs" />
     <Compile Include="Mvc\Controllers\EmployeeListController.cs" />
     <Compile Include="Mvc\Controllers\EmployeeListDPController.cs" />
     <Compile Include="Mvc\Controllers\EmployeeListViewController.cs" />
     <Compile Include="Mvc\Controllers\KendoScriptsController.cs" />
     <Compile Include="Mvc\Models\DataModels\DepartmentDetail.cs" />
     <Compile Include="Mvc\Models\DataModels\EmployeeDetail.cs" />
+    <Compile Include="Mvc\Models\EmployeeControlsModel.cs" />
     <Compile Include="Mvc\Models\EmployeeListDPModel.cs" />
     <Compile Include="Mvc\Models\EmployeeListModel.cs" />
     <Compile Include="Mvc\Models\EmployeeListViewModel.cs" />
@@ -2041,6 +2043,7 @@
     <Content Include="App_Data\Sitefinity\WebsiteTemplates\SitefinityWebApp\Kendo\styles\Uniform\sprite_2x.png" />
     <Content Include="App_Data\Sitefinity\WebsiteTemplates\SitefinityWebApp\Kendo\styles\Uniform\sprite_kpi.png" />
     <Content Include="App_Data\Sitefinity\WebsiteTemplates\SitefinityWebApp\Kendo\styles\Uniform\sprite_kpi_2x.png" />
+    <Content Include="Mvc\Scripts\EmployeeListAPI.js" />
     <Content Include="Mvc\Scripts\EmployeeListDP.js" />
     <Content Include="Mvc\Scripts\EmployeeListView.js" />
     <Content Include="Mvc\Scripts\EmployeeGrid.js" />
@@ -2863,6 +2866,7 @@
     <Content Include="Mvc\Views\EmployeeListView\_employeeListView.cshtml" />
     <Content Include="Mvc\Views\EmployeeListDP\index.cshtml" />
     <Content Include="Mvc\Views\EmployeeListDP\_employeeListDP.cshtml" />
+    <Content Include="Mvc\Views\EmployeeControls\index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
