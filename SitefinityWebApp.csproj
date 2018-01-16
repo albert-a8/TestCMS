@@ -1104,6 +1104,7 @@
     <Compile Include="Mvc\Controllers\EmployeeListViewController.cs" />
     <Compile Include="Mvc\Controllers\KendoScriptsController.cs" />
     <Compile Include="Mvc\Models\DataModels\DepartmentDetail.cs" />
+    <Compile Include="Mvc\Models\DataModels\EmployeeData.cs" />
     <Compile Include="Mvc\Models\DataModels\EmployeeDetail.cs" />
     <Compile Include="Mvc\Models\EmployeeControlsModel.cs" />
     <Compile Include="Mvc\Models\EmployeeListDPModel.cs" />

@@ -72,7 +72,7 @@ namespace SitefinityWebApp.Custom.Services
 
             // populate employee list items
             IEnumerable<DynamicContent> employeeContents = DynamicContentHelper.GetDynamicContentByFiltering(employeeNameSpace, filterQuery, contentStatus: ContentLifecycleStatus.Live);
-            IEnumerable<EmployeeDetail> allContents = employeeContents.Select(x => new EmployeeDetail(x)).OrderBy(y => y.LastName).ThenBy(y => y.FirstName);
+            IEnumerable<EmployeeData> allContents = employeeContents.Select(x => new EmployeeData(x)).OrderBy(y => y.LastName).ThenBy(y => y.FirstName);
 
             //return ViewHelper.RenderPartialView(new EmployeeControlsController(), "_employeeListView", allContents);
             //return new EmployeeControlsController().ReturnListView(allContents);

@@ -38,18 +38,18 @@
 </div>
 <script type="text/x-kendo-tmpl" id="EmployeeTemplate">
     <div class="employeeDetails">
-        #=EmployeeImagesDisplay#
+        <div class="imagesList">#= GetEmployeeImages(EmployeeImages) #</div>
         <h2>#:FirstName#&nbsp;#:LastName#</h2>
         <p><b>Employee ID:</b> #:EmployeeID#</p>
-        <p><b>Employee Type:</b> #:EmployeeTypeDisplay#</p>
+        <p><b>Employee Type:</b> #:EmployeeType#</p>
         <p><b>Job Description:</b> #:JobDescription#</p>
         <p><b>Birthdate:</b> #:BirthdateDisplay#</p>
         <p><b>Monthly Salary:</b> #:kendo.toString(Salary, "c")#</p>
-        #=DepartmentsDisplay#
+        #= GetEmployeeDepartments(EmployeeDepartments) #
     </div>
 </script>
 <label for="EmployeeList"><b>Employees:</b></label>
-@(Html.Kendo().ListView<SitefinityWebApp.Mvc.Models.DataModels.EmployeeDetail>()
+@(Html.Kendo().ListView<SitefinityWebApp.Mvc.Models.DataModels.EmployeeData>()
     .Name("EmployeeList")
     .TagName("div")
     .ClientTemplateId("EmployeeTemplate")

@@ -32,6 +32,33 @@ function endChange() {
     CheckSubmission();
 }
 
+function GetEmployeeImages(object) {
+    var html = "";
+    if (object !== null && object.length > 0) {
+        for (var x = 0; x < object.length; x++) {
+            html += "<img src=\"" + object[x] + "\" />";
+        }
+    }
+    return html;
+}
+
+function GetEmployeeDepartments(object) {
+    var html = "";
+    if (object !== null && object.length > 0) {
+        html = "<p><b>Department/s:</b>";
+        for (var x = 0; x < object.length; x++) {
+            html += "<div class=\"department\">";
+            html += "<p><b>Department Name:</b>&nbsp;" + object[x].DepartmentName + "</p>";
+            html += "<p><b>Department Head:</b>&nbsp;" + object[x].DepartmentHead + "</p>";
+            html += "</div>";
+        }
+    }
+    else {
+        html = "<p><b>Department/s:</b> N/A</p>";
+    }
+    return html;
+}
+
 function CheckSubmission() {
     var startDate = $("#StartDate").data("kendoDatePicker").value(),
         endDate = $("#EndDate").data("kendoDatePicker").value();
