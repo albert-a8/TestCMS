@@ -38,14 +38,30 @@
 </div>
 <script type="text/x-kendo-tmpl" id="EmployeeTemplate">
     <div class="employeeDetails">
-        <div class="imagesList">#= GetEmployeeImages(EmployeeImages) #</div>
+        <div class="imagesList">
+            # var empImages = data.EmployeeImages; #
+            # for (var i = 0; i < empImages.length; i++) { #
+                <img src="#= empImages[i] #" />
+            # } #
+        </div>
         <h2>#:FirstName#&nbsp;#:LastName#</h2>
         <p><b>Employee ID:</b> #:EmployeeID#</p>
         <p><b>Employee Type:</b> #:EmployeeType#</p>
         <p><b>Job Description:</b> #:JobDescription#</p>
         <p><b>Birthdate:</b> #:BirthdateDisplay#</p>
         <p><b>Monthly Salary:</b> #:kendo.toString(Salary, "c")#</p>
-        #= GetEmployeeDepartments(EmployeeDepartments) #
+        # var empDepts = data.EmployeeDepartments; #
+        # if (empDepts !== null && empDepts.length > 0) { #
+            <p><b>Department/s:</b></p>        
+            # for (var x = 0; x < empDepts.length; x++) { #
+                <div class="department">
+                    <p><b>Department Name:</b>&nbsp;#= empDepts[x].DepartmentName #</p>
+                    <p><b>Department Head:</b>&nbsp;#= empDepts[x].DepartmentHead #</p>
+                </div>
+            # } #
+        # } else { #
+            <p><b>Department/s:</b> N/A</p>
+        # } #
     </div>
 </script>
 <label for="EmployeeList"><b>Employees:</b></label>
