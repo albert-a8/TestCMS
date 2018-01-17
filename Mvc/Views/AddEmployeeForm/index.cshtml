@@ -1,0 +1,113 @@
+@using Kendo.Mvc.UI
+@model SitefinityWebApp.Mvc.Models.AddEmployeeFormModel
+
+@Html.Hidden("hidGUID", Model.EmployeeGUID.ToString())
+<div class="commonDiv">
+    <div class="fullRow">
+        <label>Employee ID</label>&nbsp;
+        @Html.TextBoxFor(m => m.EmployeeID, new { @id = "txt_EmployeeID", @Value = Model.EmployeeID, @maxlength = 20 })
+    </div>
+</div>
+<div class="commonDiv">
+    <div class="halfRow">
+        <label>First Name</label>&nbsp;
+        @Html.TextBoxFor(m => m.FirstName, new { @id = "txt_FirstName", @Value = Model.FirstName, @maxlength = 50 })
+    </div>
+    <div class="halfRow">
+        <label>Last Name</label>&nbsp;
+        @Html.TextBoxFor(m => m.LastName, new { @id = "txt_LastName", @Value = Model.LastName, @maxlength = 50 })
+    </div>
+</div>
+<div class="commonDiv">
+    <div class="halfRow">
+        <label>Job Description</label>&nbsp;
+        @Html.TextBoxFor(m => m.JobDescription, new { @id = "txt_JobDescription", @Value = Model.JobDescription, @maxlength = 50 })
+    </div>
+    <div class="halfRow">
+        <label>Salary</label>&nbsp;
+        @Html.TextBoxFor(m => m.Salary, new { @id = "txt_Salary", @Value = Model.Salary, @maxlength = 10 })
+    </div>
+</div>
+<div class="commonDiv">
+    <div class="halfRow">
+        <label>Birth Date</label>&nbsp;
+        @(Html.Kendo().DatePicker()
+            .Name("txt_BirthDate")
+            .Max(DateTime.Today)
+            .Value(Model.BirthDate)
+            .ParseFormats(new string[] { "MM/dd/yyyy" })
+            .HtmlAttributes(new { style = "width:200px;" })
+        )
+    </div>
+</div>
+<div class="commonDiv">
+    <div class="fullRow">
+        <label>Employee Type/s</label>&nbsp;
+        @(Html.Kendo().MultiSelect()
+            .Name("mul_EmployeeTypes")
+            .Placeholder("Select employee type")
+            .DataTextField("Key")
+            .DataValueField("Value")
+            .BindTo(Model.EmployeeClassification)
+            .Value(Model.EmployeeTypes_Selected)
+            .HtmlAttributes(new { style = "width:400px;" })
+            .Deferred()
+        )
+    </div>
+</div>
+@{
+    if (Model.EmployeeGUID.ToString() == "")
+    {
+        <div class="commonDiv">
+            <div class="fullRow">
+            <label>Department/s</label>&nbsp;
+            @(Html.Kendo().MultiSelect()
+                .Name("mul_EmployeeDepartment")
+                .Placeholder("Select department")
+                .DataTextField("Key")
+                .DataValueField("Value")
+                .BindTo(Model.DepartmentClassification)
+                .Value(Model.EmployeeDepartments_Selected)
+                .HtmlAttributes(new { style = "width:400px;" })
+                .Deferred()
+            )
+            </div>
+        </div>
+    }
+}
+<div class="commonDiv">
+@{
+    if (Model.EmployeeGUID.ToString() == "")
+    {
+        <input id="btnSubmit" type="button" value="Submit" onclick="CheckNewSubmission();" />
+    }
+    else
+    {
+        <input id="btnSubmit" type="button" value="Submit" onclick="CheckEditSubmission();" />
+    }
+}
+</div>
+
+<style type="text/css">
+    .commonDiv {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .fullRow {
+        width: 100%;
+        overflow: hidden;
+        margin-bottom: 10px;
+    }
+
+    .halfRow {
+        float: left;
+        min-width: 300px;
+        overflow: hidden;
+        margin-bottom: 10px;
+    }
+
+    .form-control .long {
+        width: 400px;
+    }
+</style>

@@ -37,13 +37,15 @@
     </div>
 </div>
 <script type="text/x-kendo-tmpl" id="EmployeeTemplate">
-    <div class="employeeDetails">
-        <div class="imagesList">
-            # var empImages = data.EmployeeImages; #
-            # for (var i = 0; i < empImages.length; i++) { #
-                <img src="#= empImages[i] #" />
-            # } #
-        </div>
+    <div class="employeeDetails">        
+        # var empImages = data.EmployeeImages; #
+        # if (empImages !== null && empImages.length > 0) { #
+            <div class="imagesList">
+                # for (var i = 0; i < empImages.length; i++) { #
+                    <img src="#= empImages[i] #" />
+                # } #
+            </div>        
+        # } #
         <h2>#:FirstName#&nbsp;#:LastName#</h2>
         <p><b>Employee ID:</b> #:EmployeeID#</p>
         <p><b>Employee Type:</b> #:EmployeeType#</p>
@@ -62,6 +64,7 @@
         # } else { #
             <p><b>Department/s:</b> N/A</p>
         # } #
+        <p><a href="../edit-employee/#:EmployeeURL#">[ Edit ]</a></p>
     </div>
 </script>
 <label for="EmployeeList"><b>Employees:</b></label>
@@ -69,7 +72,6 @@
     .Name("EmployeeList")
     .TagName("div")
     .ClientTemplateId("EmployeeTemplate")
-    .Pageable()
     .Deferred()
 )
 
@@ -88,7 +90,7 @@
     }
     .employeeDetails {
         float: left; position: relative; width: 45%; margin: 5px 5px 5px 5px; padding: 8px; overflow: hidden;
-        min-height: 200px; border: solid 1px #b5b5b5;
+        min-height: 220px; border: solid 1px #b5b5b5;
     }
         .employeeDetails .imagesList {
             width: 100%; height: 50px; text-align: left; margin-bottom: 5px;
